@@ -1,0 +1,6 @@
+C:\Users\dell\source\repos\ShoppingCartApp\CommonLayer\obj\Debug\CommonLayer.csprojAssemblyReference.cache
+C:\Users\dell\source\repos\ShoppingCartApp\CommonLayer\obj\Debug\CommonLayer.csproj.CoreCompileInputs.cache
+C:\Users\dell\source\repos\ShoppingCartApp\CommonLayer\bin\Debug\CommonLayer.dll
+C:\Users\dell\source\repos\ShoppingCartApp\CommonLayer\bin\Debug\CommonLayer.pdb
+C:\Users\dell\source\repos\ShoppingCartApp\CommonLayer\obj\Debug\CommonLayer.dll
+C:\Users\dell\source\repos\ShoppingCartApp\CommonLayer\obj\Debug\CommonLayer.pdb

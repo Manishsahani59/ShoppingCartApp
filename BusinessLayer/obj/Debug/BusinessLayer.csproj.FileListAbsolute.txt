@@ -1,0 +1,14 @@
+C:\Users\dell\source\repos\ShoppingCartApp\BusinessLayer\bin\Debug\BusinessLayer.dll
+C:\Users\dell\source\repos\ShoppingCartApp\BusinessLayer\bin\Debug\BusinessLayer.pdb
+C:\Users\dell\source\repos\ShoppingCartApp\BusinessLayer\bin\Debug\CommonLayer.dll
+C:\Users\dell\source\repos\ShoppingCartApp\BusinessLayer\bin\Debug\RepositeryLayer.dll
+C:\Users\dell\source\repos\ShoppingCartApp\BusinessLayer\bin\Debug\EntityFramework.dll
+C:\Users\dell\source\repos\ShoppingCartApp\BusinessLayer\bin\Debug\CommonLayer.pdb
+C:\Users\dell\source\repos\ShoppingCartApp\BusinessLayer\bin\Debug\RepositeryLayer.pdb
+C:\Users\dell\source\repos\ShoppingCartApp\BusinessLayer\bin\Debug\RepositeryLayer.dll.config
+C:\Users\dell\source\repos\ShoppingCartApp\BusinessLayer\bin\Debug\EntityFramework.xml
+C:\Users\dell\source\repos\ShoppingCartApp\BusinessLayer\obj\Debug\BusinessLayer.csprojAssemblyReference.cache
+C:\Users\dell\source\repos\ShoppingCartApp\BusinessLayer\obj\Debug\BusinessLayer.csproj.CoreCompileInputs.cache
+C:\Users\dell\source\repos\ShoppingCartApp\BusinessLayer\obj\Debug\BusinessLayer.csproj.CopyComplete
+C:\Users\dell\source\repos\ShoppingCartApp\BusinessLayer\obj\Debug\BusinessLayer.dll
+C:\Users\dell\source\repos\ShoppingCartApp\BusinessLayer\obj\Debug\BusinessLayer.pdb

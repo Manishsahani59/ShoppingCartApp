@@ -1,0 +1,27 @@
+﻿@model IEnumerable<CommonLayer.ResponseModel.ProductResponseModel>
+@using CommonLayer.ResponseModel
+@{
+    ViewBag.Title = "ViewProduct";
+}
+
+<h2>Avaliable Products</h2>
+<div class="row">
+    @foreach (ProductResponseModel Product in Model)
+    {
+        <div class="card col-lg-3" style="margin-bottom: 10px;">
+            <img class="card-img-top" src="~/Content/Images/FB_IMG_1488717796707.jpg" alt="Card image cap" style="width:100%;height:200px;">
+            <div class="card-body">
+                <h3 class="card-text">@Product.Name </h3>
+                <h5 class="card-title"> <span class="glyphicon glyphicon-euro"></span> <b>@Product.Price</b></h5>
+                <h5 class="card-title">Auantity : @Product.Quantity</h5>
+    
+                <a href="#" class="btn btn-primary btn-sm">Add to cart</a>
+                <a href="#" class="btn btn-primary  btn-sm">update</a>
+                <a href="#" class="btn btn-primary  btn-sm">delete</a>
+            </div>
+        </div>
+    }
+
+</div>
+
+

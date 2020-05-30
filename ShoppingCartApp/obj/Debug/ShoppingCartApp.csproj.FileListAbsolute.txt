@@ -71,7 +71,6 @@ C:\Users\dell\source\repos\ShoppingCartApp\ShoppingCartApp\bin\System.Web.Razor.
 C:\Users\dell\source\repos\ShoppingCartApp\ShoppingCartApp\bin\System.Web.WebPages.xml
 C:\Users\dell\source\repos\ShoppingCartApp\ShoppingCartApp\bin\System.Web.WebPages.Deployment.xml
 C:\Users\dell\source\repos\ShoppingCartApp\ShoppingCartApp\bin\System.Web.WebPages.Razor.xml
-C:\Users\dell\source\repos\ShoppingCartApp\ShoppingCartApp\bin\Newtonsoft.Json.xml
 C:\Users\dell\source\repos\ShoppingCartApp\ShoppingCartApp\bin\Antlr3.Runtime.pdb
 C:\Users\dell\source\repos\ShoppingCartApp\ShoppingCartApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\dell\source\repos\ShoppingCartApp\ShoppingCartApp\obj\Debug\ShoppingCartApp.csprojAssemblyReference.cache
@@ -102,3 +101,6 @@ C:\Users\dell\source\repos\ShoppingCartApp\ShoppingCartApp\bin\Unity.Mvc.pdb
 C:\Users\dell\source\repos\ShoppingCartApp\ShoppingCartApp\bin\Unity.Mvc.xml
 C:\Users\dell\source\repos\ShoppingCartApp\ShoppingCartApp\bin\EntityFramework.SqlServer.dll
 C:\Users\dell\source\repos\ShoppingCartApp\ShoppingCartApp\bin\EntityFramework.SqlServer.xml
+C:\Users\dell\source\repos\ShoppingCartApp\ShoppingCartApp\bin\CloudinaryDotNet.dll
+C:\Users\dell\source\repos\ShoppingCartApp\ShoppingCartApp\bin\System.Text.Encodings.Web.dll
+C:\Users\dell\source\repos\ShoppingCartApp\ShoppingCartApp\bin\CloudinaryDotNet.xml

@@ -13,5 +13,7 @@ namespace RepositeryLayer.Context
         { }
         public DbSet<ProductDetails> Products { get; set; }
 
+        public DbSet<ProductOrder> OrderedProduct { get; set; }
+
     }
 }

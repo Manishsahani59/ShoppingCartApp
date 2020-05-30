@@ -7,13 +7,13 @@ namespace RepositeryLayer.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.0.0-20911")]
-    public sealed partial class ititalCreate : IMigrationMetadata
+    public sealed partial class IntitalCreation : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ititalCreate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(IntitalCreation));
         
         string IMigrationMetadata.Id
         {
-            get { return "202005251011331_ititalCreate"; }
+            get { return "202005271211272_IntitalCreation"; }
         }
         
         string IMigrationMetadata.Source

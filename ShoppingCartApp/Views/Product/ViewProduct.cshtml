@@ -14,11 +14,8 @@
                 <h3 class="card-text">@Product.Name </h3>
                 <h5 class="card-title"> <span class="glyphicon glyphicon-euro"></span> <b>@Product.Price</b></h5>
                 <h5 class="card-title">Auantity : @Product.Quantity</h5>
-    
-                <a href="#" class="btn btn-primary btn-sm">Add to cart</a>
-                <a href="#" class="btn btn-primary  btn-sm">update</a>
-                <a href="#" class="btn btn-primary  btn-sm">delete</a>
-            </div>
+                 @Html.ActionLink("Add to cart", "OrderedProduct", "Product", new { Product.Id}, new { @class = " btn btn-primary btn-sm btn-block "})
+             </div>
         </div>
     }
 

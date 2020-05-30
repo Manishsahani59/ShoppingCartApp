@@ -116,9 +116,9 @@
   <ItemGroup>
     <Compile Include="Context\AppContext.cs" />
     <Compile Include="Interface\IProductRepositeryLayer.cs" />
-    <Compile Include="Migrations\202005251011331_ititalCreate.cs" />
-    <Compile Include="Migrations\202005251011331_ititalCreate.Designer.cs">
-      <DependentUpon>202005251011331_ititalCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202005271211272_IntitalCreation.cs" />
+    <Compile Include="Migrations\202005271211272_IntitalCreation.Designer.cs">
+      <DependentUpon>202005271211272_IntitalCreation.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -135,8 +135,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202005251011331_ititalCreate.resx">
-      <DependentUpon>202005251011331_ititalCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202005271211272_IntitalCreation.resx">
+      <DependentUpon>202005271211272_IntitalCreation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

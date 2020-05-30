@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace CommonLayer.ModelDB
 {
-    [Table("Products")]
+   [Table("Products")]
    public class ProductDetails
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int Id { get; set;}
         [Required]
         public string Name { get; set; }
         public string Image { get; set; }

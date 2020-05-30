@@ -6,6 +6,9 @@
     <title>@ViewBag.Title - ShppingCartApp</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -19,18 +22,19 @@
                 @Html.ActionLink("Shopping Cart", "ViewProduct", "Product", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+                
+                <ul class="nav navbar-nav navbar-right">
                     <li>@Html.ActionLink("Home", "ViewProduct", "Product")</li>
                     <li>@Html.ActionLink("AddProducts", "AddProducts", "Product")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
                     <li>@Html.ActionLink("Login", "ViewProduct", "Home")</li>
                     <li>@Html.ActionLink("SignUp", "ViewProduct", "Home")</li>
-                    <li>@Html.ActionLink("Cart", "Contact", "Home")</li>
+                    <li><a href="@Url.Action("ViewOrderedProducts", "Product")"><span class="glyphicon glyphicon-shopping-cart"></span> <span class="badge" style="background-color:red">@Html.Action("CountOrderedProduct", "Product")</span></a></li>
+                    @*<span class="glyphicon glyphicon-shopping-cart"></span>*@
                 </ul>
             </div>
         </div>
+
     </div>
     <div class="container body-content">
         @RenderBody()

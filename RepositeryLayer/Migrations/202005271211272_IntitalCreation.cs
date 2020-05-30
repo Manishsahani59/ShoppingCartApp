@@ -3,10 +3,22 @@ namespace RepositeryLayer.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class ititalCreate : DbMigration
+    public partial class IntitalCreation : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.OrderedProduct",
+                c => new
+                    {
+                        OrderId = c.Int(nullable: false, identity: true),
+                        ProductId = c.Int(nullable: false),
+                        isDeleted = c.Boolean(nullable: false),
+                        OrderedDate = c.DateTime(nullable: false),
+                        ModefyDate = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.OrderId);
+            
             CreateTable(
                 "dbo.Products",
                 c => new
@@ -26,6 +38,7 @@ namespace RepositeryLayer.Migrations
         public override void Down()
         {
             DropTable("dbo.Products");
+            DropTable("dbo.OrderedProduct");
         }
     }
 }

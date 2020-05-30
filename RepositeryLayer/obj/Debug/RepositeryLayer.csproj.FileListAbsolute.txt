@@ -53,5 +53,5 @@ C:\Users\dell\source\repos\ShoppingCartApp\RepositeryLayer\bin\Debug\System.Thre
 C:\Users\dell\source\repos\ShoppingCartApp\RepositeryLayer\obj\Debug\RepositeryLayer.csproj.CopyComplete
 C:\Users\dell\source\repos\ShoppingCartApp\RepositeryLayer\obj\Debug\RepositeryLayer.dll
 C:\Users\dell\source\repos\ShoppingCartApp\RepositeryLayer\obj\Debug\RepositeryLayer.pdb
-C:\Users\dell\source\repos\ShoppingCartApp\RepositeryLayer\obj\Debug\RepositeryLayer.Migrations.ititalCreate.resources
+C:\Users\dell\source\repos\ShoppingCartApp\RepositeryLayer\obj\Debug\RepositeryLayer.Migrations.IntitalCreation.resources
 C:\Users\dell\source\repos\ShoppingCartApp\RepositeryLayer\obj\Debug\RepositeryLayer.csproj.GenerateResource.cache

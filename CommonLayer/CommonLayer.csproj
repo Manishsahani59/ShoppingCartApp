@@ -44,7 +44,9 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="ModelDB\ProductDetails.cs" />
+    <Compile Include="ModelDB\ProductOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestModel\OrderProductRequestModel.cs" />
     <Compile Include="RequestModel\ProductRequestModel.cs" />
     <Compile Include="ResponseModel\ProductResponseModel.cs" />
   </ItemGroup>

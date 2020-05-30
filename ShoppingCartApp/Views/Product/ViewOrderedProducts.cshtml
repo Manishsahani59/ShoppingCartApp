@@ -1,0 +1,76 @@
+﻿@model IEnumerable<CommonLayer.ResponseModel.ProductResponseModel>
+@{
+    ViewBag.Title = "ViewOrderedProducts";
+}
+
+<h2 class="text-center text-info">Products In Your Cart</h2>
+<div class=" table-responsive">
+    <table class="table text-center table-hover table-striped">
+        <tr class="text-capitalize">
+
+            <td>Sr.No</td>
+            <td>Image</td>
+            <td>Name</td>
+            <td>Price</td>
+            <td>Quantity</td>
+            <td>TotalPrice</td>
+            <td><a href="#"><button class="btn btn-danger"><i class="fa fa-trash"></i> Clear cart</button></a></td>
+
+        </tr>
+        @{int index = 0; int GrandTotal = 0;}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td> @{ index++; }@index</td>
+                <td><img class="img img-thumbnail" src="~/Content/Images/FB_IMG_1488717796707.jpg" style="width:50px;height:50px"></td>
+                <td>@item.Name</td>
+                <td>@item.Price</td>
+                <td> <input type="text" value="@item.Quantity" id="Quantity"><input type="number" value="1" id="numberofProduct" min="1" max="100" class="form-control" style="width"></td>
+              
+                <td>@(@item.Price * @item.Quantity)</td>
+                <td><a id="deleteItem" class="deleteItem" data-toggle="modal" data-target="#exampleModal" data-path="@Url.Action("RemoveProdcutOrder","Product",new {Id= item.Id})"><button class="btn btn-danger"><i class="fa fa-trash"></i></button></a></td>
+            </tr>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-danger">
+                            <h5 class="modal-title" id="exampleModalLabel">Delete Confirmation</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete this item?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <a href="@Url.Action("RemoveProdcutOrder","Product",new {Id= item.Id})"><button id="btnContinueDelete" type="button" class="btn btn-danger">Delete</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <tr>
+            <td colspan="2"><a href="@Url.Action("ViewProduct", "Product")"> <button class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Continue shopping</button></a></td>
+            <td colspan="2">Grand Total :@GrandTotal</td>
+            <td colspan="2"></td>
+            <td colspan="2"> <a href=@Url.Action("Checkout","Product") ><button class="btn btn-info"> <span class="glyphicon glyphicon-credit-card"></span> Checkout</button></a></td>
+        </tr>
+
+    </table>
+</div>
+
+@*<script type="text/javascript">
+    $(document).ready(function () {
+        $("#numberofProduct").keyup(function () {
+            alert("Handler for .keyup() called.");
+            var _ActualQuantity = $('#Quantity').val();
+            var _OrderQuantity = $('#numberofProduct').val();
+            if (_OrderQuantity >= _ActualQuantity) {
+                alert('The Number avaliable product is' + _ActualQuantity);
+                                }
+           
+        });
+    });
+</script>*@

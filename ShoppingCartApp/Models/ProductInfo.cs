@@ -8,13 +8,14 @@ namespace ShoppingCartApp.Models
 {
     public class ProductInfo
     {
-        [Required]
+        [Required(ErrorMessage = "Please enter product name.")]
         public string Name { get; set; }
-        [Required]
+        
+        [Required(ErrorMessage = "Please enter product Qunatity.")]
         public int Quantity { get; set; }
         [Required]
         public int Price { get; set; }
 
-        public string Image { get; set; }
+        public HttpPostedFileBase Image { get; set; }
     }
 }

@@ -2,14 +2,11 @@
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using CommonLayer.RequestModel;
-using CommonLayer.ResponseModel;
-using Microsoft.Build.Tasks.Deployment.Bootstrapper;
 using ShoppingCartApp.Models;
 using System;
-using System.Configuration;
-using System.Drawing;
-using System.Reflection.Emit;
+using System.Web;
 using System.Web.Mvc;
+
 
 namespace ShoppingCartApp.Controllers
 {
@@ -20,17 +17,20 @@ namespace ShoppingCartApp.Controllers
             BusinessLayer = BusinessLayerDI;
         }
 
+        
         public ActionResult AddProducts(ProductInfo ProductDetails)
         {
             try
             {
                 if (ModelState.IsValid) {
-                  //  string cloudineryPath=UploadImageToCloudinery(ProductDetails.Image);
+                   HttpPostedFileBase productImage = ProductDetails.Image;
+                    string productImagePath = UploadImageToCloudinery(productImage);
+                  
                    
                     ProductRequestModel Data = new ProductRequestModel()
                     {
                         Name = ProductDetails.Name,
-                        Image = ProductDetails.Image,
+                        Image = productImagePath,
                         Price = ProductDetails.Price,
                         Quantity = ProductDetails.Quantity
                     };
@@ -59,34 +59,35 @@ namespace ShoppingCartApp.Controllers
                 throw new ApplicationException(e.Message);
             }
         }
-        public string UploadImageToCloudinery(string ImagePath) {
+        public string UploadImageToCloudinery(HttpPostedFileBase productImage) {
             try
             {
-                Account Account = new Account(
+                Account account = new Account(
                  "dmxhysf6r",
                  "995237421458962",
                  "1DfOBtSkCtJvcRvkOHISNNfum8k"
                 );
-                Cloudinary cloudinary = new Cloudinary(Account);
-
-                var imageUpload = new ImageUploadParams
+                //       var Account = new Account(ConfigurationManager.AppSettings["Cloud_Name"],
+                //ConfigurationManager.AppSettings["Api_Key"], ConfigurationManager.AppSettings["Api_Secret"]);
+                Cloudinary cloudinary = new Cloudinary(account);
+                var uploadImage = new ImageUploadParams
                 {
-                    File = new FileDescription(ImagePath),
-                    Folder = "ShoppingCartApp"
+                    File = new FileDescription(productImage.FileName, productImage.InputStream),
+                    Folder="ShoppingCartApp"
                 };
-
-                var uploadImage = cloudinary.Upload(imageUpload);
-
-                return uploadImage.SecureUri.AbsoluteUri;
+                var Result = cloudinary.Upload(uploadImage);
+                return Result.SecureUri.AbsoluteUri;
             }
+            
             catch (Exception e) {
                 throw new ApplicationException(e.Message);
             }
         }
 
+        [HttpDelete]
         public ActionResult DeleteProduct(int Id)
         {
-            try
+            try 
             {
              var Result= BusinessLayer.DeleteProduct(Id);
                 return View(Result);

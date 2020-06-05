@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "ViewProduct";
 }
-
 @if (Model.Count() > 0)
 {
     <h2>Avaliable Products</h2>
@@ -11,7 +10,7 @@
         @foreach (ProductResponseModel Product in Model)
         {
             <div class="card col-lg-3" style="margin-bottom: 10px;">
-                <img class="card-img-top" src="@Product.Image" alt="Card image cap" style="width:100%;height:200px;">
+                <img class="card-img-top img-thumbnail" src="@Product.Image" alt="Card image cap" style="width:100%;height:200px;">
                 <div class="card-body">
                     <h3 class="card-text">@Product.Name </h3>
                     <h5 class="card-title"> <span class="glyphicon glyphicon-euro"></span> <b>@Product.Price</b></h5>
@@ -20,9 +19,7 @@
                 </div>
             </div>
         }
-
     </div>
-
 }
 else
 {

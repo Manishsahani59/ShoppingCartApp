@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<CommonLayer.ResponseModel.ProductResponseModel>
+
 @{
     ViewBag.Title = "ViewOrderedProducts";
 }
@@ -20,7 +21,11 @@
                 <td><a href="#"><button class="btn btn-danger"><i class="fa fa-trash"></i> Clear cart</button></a></td>
 
             </tr>
-            @{int index = 0; int GrandTotal = 0, OrderProducts = 1;}
+            @{
+                int index = 0; int GrandTotal = 0, OrderProducts = 1;
+                List<ShoppingCartApp.Models.checkoutModel> Listinfo = new List<ShoppingCartApp.Models.checkoutModel>();
+                ShoppingCartApp.Models.checkoutModel info = new ShoppingCartApp.Models.checkoutModel();
+            }
             @foreach (var item in Model)
             {
                 <tr>
@@ -30,14 +35,23 @@
                     <td>@item.Price</td>
                     <td>
                         <input type="hidden" value="@item.Quantity" id="Quantity">
-                        <input type="text" value="@OrderProducts" id="numberofProduct" class="form-control" style="width">
-                    </td>
+                        <input type="text" value="@OrderProducts" onkeyup="checkvalue(@item.Id,@item.Quantity,this.value)" id="numberofProduct" class="form-control">
 
+                    </td>
                     <td>
                         @{
                             GrandTotal = GrandTotal + @item.Price * @OrderProducts;
+                            info.Id = item.Id;
+                            info.Name = item.Name;
+                            info.Price = item.Price;
+                            info.Quantity = @OrderProducts;
+                            info.Image = info.Image;
+                            Listinfo.Add(info);
                         }
-                        @(@item.Price * @OrderProducts)
+                       
+
+                          @(@item.Price * @OrderProducts)
+                        
                     </td>
                     <td><a id="deleteItem" class="deleteItem" data-toggle="modal" data-target="#exampleModal" data-path="@Url.Action("RemoveProdcutOrder", "Product", new { Id = item.Id })"><button class="btn btn-danger"><i class="fa fa-trash"></i></button></a></td>
                 </tr>
@@ -56,7 +70,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                <a href="@Url.Action("RemoveProdcutOrder", "Product", new { Id = item.Id })"><button id="btnContinueDelete" type="button" class="btn btn-danger">Delete</button></a>
+                                <a href="@Url.Action("RemoveProdcutOrder", "Product", new {item.Id})"><button id="btnContinueDelete" type="button" class="btn btn-danger">Delete</button></a>
                             </div>
                         </div>
                     </div>
@@ -64,18 +78,50 @@
             }
             <tr>
                 <td colspan="2"><a href="@Url.Action("ViewProduct", "Product")"> <button class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Continue shopping</button></a></td>
+                
                 <td colspan="3">Grand Total </td>
                 <td>
                     <i class="fas fa-rupee-sign"></i> @GrandTotal
                 </td>
-                <td colspan="2"> <a href=@Url.Action("Checkout","Product")><button class="btn btn-info"> <span class="glyphicon glyphicon-credit-card"></span> Checkout</button></a></td>
+                <td colspan="2">
+                    <a href=@Url.Action("Checkout", "Product" )>
+                        <button class="btn btn-info">
+                            <span class="glyphicon glyphicon-credit-card"></span> Checkout
+                        </button>
+                    </a>
+                </td>
             </tr>
 
         </table>
+        <div class="col-lg-12 text-center">
+        <span id="result_scucess" class="text-success"></span>
+        <span id="result_error" class="text-danger"></span>
+            </div>
     </div>
 }
 else
 {
     <h2 class="text-center text-muted">Cart is Empty</h2>
 }
+   <script type="text/javascript">
+    function checkvalue(id, Actual_value, Order_value) {
+        if (Order_value <= Actual_value) {
+            document.getElementById("result_scucess").innerHTML = "Your product Quantity updated"
+            document.getElementById("result_error").innerHTML = ""
+            if (Order_value == '') {
+                print();
+                document.getElementById("result_scucess").innerHTML = ""
+                document.getElementById("result_error").innerHTML = "Canot be Empty"
+            }
+     }
+        else {
+            document.getElementById("result_scucess").innerHTML = ""
+            document.getElementById("result_error").innerHTML = "No More Product Avaliable plese try later"
+        }
+       }
+      
 
+       function print() {
+           alert('Hi');
+       }     
+  </script>

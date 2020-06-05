@@ -21,7 +21,7 @@ namespace ShoppingCartApp.App_Start
             // register all your components with the container here
             // it is NOT necessary to register your controllers
 
-            // e.g. container.RegisterType<ITestService, TestService>();
+            // e.g. container.RegisterType<ITestService,C:\Users\dell\source\repos\ShoppingCartApp\ShoppingCartApp\Scripts\ TestService>();
             container.RegisterType<IProductsBusinessLayer, ProductBusinessLayer>();
             container.RegisterType<IProductRepositeryLayer, ProductRepositeryLayer>();
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));

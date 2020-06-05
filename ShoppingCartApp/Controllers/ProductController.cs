@@ -2,11 +2,15 @@
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using CommonLayer.RequestModel;
+using Microsoft.Reporting.WebForms;
 using ShoppingCartApp.Models;
+using ShoppingCartApp.Reports;
 using System;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Web;
 using System.Web.Mvc;
-
+using System.Web.UI.WebControls;
 
 namespace ShoppingCartApp.Controllers
 {
@@ -143,7 +147,7 @@ namespace ShoppingCartApp.Controllers
         public ActionResult RemoveProdcutOrder(int Id) {
             try
             {
-              var Result=  BusinessLayer.RemoveProdcutOrder(Id);
+                var Result=  BusinessLayer.RemoveProdcutOrder(Id);
                 return RedirectToAction("ViewOrderedProducts", "Product");
             }
             catch (Exception e)
@@ -153,7 +157,7 @@ namespace ShoppingCartApp.Controllers
             }
         }
 
-        public ActionResult Checkout() {
+        public ActionResult Checkout(checkoutData info) {
             try
             {
                 return View();
@@ -165,5 +169,28 @@ namespace ShoppingCartApp.Controllers
             }
         }
 
+
+            ProductDataSet ds = new ProductDataSet();
+            public ActionResult ProductReport()
+            {
+                ReportViewer reportViewer = new ReportViewer();
+                reportViewer.ProcessingMode = ProcessingMode.Local;
+                reportViewer.SizeToReportContent = true;
+                reportViewer.Width = Unit.Percentage(100);
+                reportViewer.Height = Unit.Percentage(100);
+
+                var connectionString = ConfigurationManager.ConnectionStrings["ShoppingcartApplication"].ConnectionString;
+
+
+                SqlConnection conx = new SqlConnection(connectionString); SqlDataAdapter adp = new SqlDataAdapter("SELECT * FROM Products", conx);
+
+                adp.Fill(ds, ds.Products.TableName);
+
+                reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\ProductReport.rdlc";
+                reportViewer.LocalReport.DataSources.Add(new ReportDataSource("ProductDataSet", ds.Tables[0]));
+                ViewBag.ReportViewer = reportViewer;
+                return View();
+            }
+        }
     }
-}
+

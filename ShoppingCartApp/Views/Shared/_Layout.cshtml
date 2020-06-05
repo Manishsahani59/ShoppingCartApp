@@ -26,9 +26,6 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>@Html.ActionLink("Home", "ViewProduct", "Product")</li>
                     <li>@Html.ActionLink("AddProducts", "AddProducts", "Product")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Login", "ViewProduct", "Home")</li>
-                    <li>@Html.ActionLink("SignUp", "ViewProduct", "Home")</li>
                     <li><a href="@Url.Action("ViewOrderedProducts", "Product")"><span class="glyphicon glyphicon-shopping-cart"></span> <span class="badge" style="background-color:red">@Html.Action("CountOrderedProduct", "Product")</span></a></li>
                     @*<span class="glyphicon glyphicon-shopping-cart"></span>*@
                 </ul>
@@ -39,7 +36,7 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
+        <footer class="text-center">
             <p>&copy; @DateTime.Now.Year - Shopping Cart Application </p>
         </footer>
     </div>

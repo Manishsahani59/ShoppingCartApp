@@ -120,6 +120,10 @@
     <Compile Include="Migrations\202005271211272_IntitalCreation.Designer.cs">
       <DependentUpon>202005271211272_IntitalCreation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006060751069_AddTableCheckout.cs" />
+    <Compile Include="Migrations\202006060751069_AddTableCheckout.Designer.cs">
+      <DependentUpon>202006060751069_AddTableCheckout.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="services\ProductRepositeryLayer.cs" />
@@ -137,6 +141,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202005271211272_IntitalCreation.resx">
       <DependentUpon>202005271211272_IntitalCreation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006060751069_AddTableCheckout.resx">
+      <DependentUpon>202006060751069_AddTableCheckout.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

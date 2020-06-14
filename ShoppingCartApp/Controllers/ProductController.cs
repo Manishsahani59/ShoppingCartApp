@@ -6,6 +6,7 @@ using Microsoft.Reporting.WebForms;
 using ShoppingCartApp.Models;
 using ShoppingCartApp.Reports;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Web;
@@ -17,20 +18,22 @@ namespace ShoppingCartApp.Controllers
     public class ProductController : Controller
     {
         private IProductsBusinessLayer BusinessLayer;
-        public ProductController(IProductsBusinessLayer BusinessLayerDI) {
+        public ProductController(IProductsBusinessLayer BusinessLayerDI)
+        {
             BusinessLayer = BusinessLayerDI;
         }
 
-        
+
         public ActionResult AddProducts(ProductInfo ProductDetails)
         {
             try
             {
-                if (ModelState.IsValid) {
-                   HttpPostedFileBase productImage = ProductDetails.Image;
+                if (ModelState.IsValid)
+                {
+                    HttpPostedFileBase productImage = ProductDetails.Image;
                     string productImagePath = UploadImageToCloudinery(productImage);
-                  
-                   
+
+
                     ProductRequestModel Data = new ProductRequestModel()
                     {
                         Name = ProductDetails.Name,
@@ -42,7 +45,7 @@ namespace ShoppingCartApp.Controllers
                     return RedirectToAction("ViewProduct", "Product");
                 }
                 return View();
-                
+
             }
             catch (Exception e)
             {
@@ -63,7 +66,8 @@ namespace ShoppingCartApp.Controllers
                 throw new ApplicationException(e.Message);
             }
         }
-        public string UploadImageToCloudinery(HttpPostedFileBase productImage) {
+        public string UploadImageToCloudinery(HttpPostedFileBase productImage)
+        {
             try
             {
                 Account account = new Account(
@@ -71,19 +75,18 @@ namespace ShoppingCartApp.Controllers
                  "995237421458962",
                  "1DfOBtSkCtJvcRvkOHISNNfum8k"
                 );
-                //       var Account = new Account(ConfigurationManager.AppSettings["Cloud_Name"],
-                //ConfigurationManager.AppSettings["Api_Key"], ConfigurationManager.AppSettings["Api_Secret"]);
                 Cloudinary cloudinary = new Cloudinary(account);
                 var uploadImage = new ImageUploadParams
                 {
                     File = new FileDescription(productImage.FileName, productImage.InputStream),
-                    Folder="ShoppingCartApp"
+                    Folder = "ShoppingCartApp"
                 };
                 var Result = cloudinary.Upload(uploadImage);
                 return Result.SecureUri.AbsoluteUri;
             }
-            
-            catch (Exception e) {
+
+            catch (Exception e)
+            {
                 throw new ApplicationException(e.Message);
             }
         }
@@ -91,25 +94,26 @@ namespace ShoppingCartApp.Controllers
         [HttpDelete]
         public ActionResult DeleteProduct(int Id)
         {
-            try 
+            try
             {
-             var Result= BusinessLayer.DeleteProduct(Id);
+                var Result = BusinessLayer.DeleteProduct(Id);
                 return View(Result);
             }
             catch (Exception e)
             {
                 throw new ApplicationException(e.Message);
-            }       
+            }
         }
-        
-        public ActionResult OrderedProduct(int Id) {
+
+        public ActionResult OrderedProduct(int Id)
+        {
             try
             {
                 OrderProductRequestModel Info = new OrderProductRequestModel
                 {
-                    ProductID=Id,
+                    ProductID = Id,
                 };
-                var Result=  BusinessLayer.OrderedProduct(Info);
+                var Result = BusinessLayer.OrderedProduct(Info);
                 return RedirectToAction("ViewProduct", "Product");
 
             }
@@ -117,13 +121,14 @@ namespace ShoppingCartApp.Controllers
             {
 
                 throw new ApplicationException(e.Message);
-            }    
+            }
         }
 
-        public int CountOrderedProduct() {
+        public int CountOrderedProduct()
+        {
             try
             {
-               int Result=BusinessLayer.CountOrederedProduct();
+                int Result = BusinessLayer.CountOrederedProduct();
                 return Result;
             }
             catch (Exception e)
@@ -133,21 +138,24 @@ namespace ShoppingCartApp.Controllers
             }
         }
 
-        public ActionResult ViewOrderedProducts() {
+        public ActionResult ViewOrderedProducts()
+        {
             try
             {
-              var Result= BusinessLayer.ViewOrderedProduct();
+                var Result = BusinessLayer.ViewOrderedProduct();
                 return View(Result);
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 throw new ApplicationException(e.Message);
             }
         }
 
-        public ActionResult RemoveProdcutOrder(int Id) {
+        public ActionResult RemoveProdcutOrder(int Id)
+        {
             try
             {
-                var Result=  BusinessLayer.RemoveProdcutOrder(Id);
+                var Result = BusinessLayer.RemoveProdcutOrder(Id);
                 return RedirectToAction("ViewOrderedProducts", "Product");
             }
             catch (Exception e)
@@ -157,40 +165,62 @@ namespace ShoppingCartApp.Controllers
             }
         }
 
-        public ActionResult Checkout(checkoutData info) {
+     
+        ProductDataSet ds = new ProductDataSet();
+        public ActionResult ProductReport()
+        {
+            ReportViewer reportViewer = new ReportViewer();
+            reportViewer.ProcessingMode = ProcessingMode.Local;
+            reportViewer.SizeToReportContent = true;
+            reportViewer.Width = Unit.Percentage(900);
+            reportViewer.Height = Unit.Percentage(900);
+
+            var connectionString = ConfigurationManager.ConnectionStrings["ShoppingcartApplication"].ConnectionString;
+
+
+            SqlConnection conx = new SqlConnection(connectionString); SqlDataAdapter adp = new SqlDataAdapter("SELECT * FROM Products", conx);
+
+            adp.Fill(ds, ds.Products.TableName);
+
+            reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\ProductReport.rdlc";
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("ProductDataSet", ds.Tables[0]));
+            ViewBag.ReportViewer = reportViewer;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Checkout(IEnumerable<checkoutModel> info)
+        {
             try
             {
-                return View();
+                TempData.Add("ProductID&Quantity", info);
+                return Json(data:info, JsonRequestBehavior.AllowGet);
+
+
             }
             catch (Exception e)
             {
-
-                throw new ApplicationException(e.Message); 
+                throw new ApplicationException(e.Message);
             }
         }
 
+        public ActionResult Checkout() {
+            return View();
+        }
 
-            ProductDataSet ds = new ProductDataSet();
-            public ActionResult ProductReport()
+        public ActionResult OrderPlace(PlaceOreder OrdereInfo) {
+
+            try
             {
-                ReportViewer reportViewer = new ReportViewer();
-                reportViewer.ProcessingMode = ProcessingMode.Local;
-                reportViewer.SizeToReportContent = true;
-                reportViewer.Width = Unit.Percentage(100);
-                reportViewer.Height = Unit.Percentage(100);
-
-                var connectionString = ConfigurationManager.ConnectionStrings["ShoppingcartApplication"].ConnectionString;
-
-
-                SqlConnection conx = new SqlConnection(connectionString); SqlDataAdapter adp = new SqlDataAdapter("SELECT * FROM Products", conx);
-
-                adp.Fill(ds, ds.Products.TableName);
-
-                reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\ProductReport.rdlc";
-                reportViewer.LocalReport.DataSources.Add(new ReportDataSource("ProductDataSet", ds.Tables[0]));
-                ViewBag.ReportViewer = reportViewer;
-                return View();
+               IEnumerable<checkoutModel> values = TempData["ProductID&Quantity"] as IEnumerable<checkoutModel>;
+               PlaceOrderRequest Data = new PlaceOrderRequest();
+               return RedirectToAction("ViewOrderedProducts", "Product");
+            }
+            catch (Exception e) {
+                throw new ApplicationException(e.Message);
             }
         }
+
     }
+}
 

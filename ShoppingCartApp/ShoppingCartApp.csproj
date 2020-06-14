@@ -193,6 +193,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\checkoutModel.cs" />
+    <Compile Include="Models\PlaceOreder.cs" />
     <Compile Include="Models\ProductInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\ProductDataSet.Designer.cs">
@@ -263,8 +264,8 @@
     <Content Include="Views\Product\ViewProduct.cshtml" />
     <Content Include="Views\Product\AddProducts.cshtml" />
     <Content Include="Views\Product\ViewOrderedProducts.cshtml" />
-    <Content Include="Views\Product\Checkout.cshtml" />
     <Content Include="Views\Product\ProductReport.cshtml" />
+    <Content Include="Views\Product\Checkout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

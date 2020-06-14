@@ -15,5 +15,7 @@ namespace RepositeryLayer.Context
 
         public DbSet<ProductOrder> OrderedProduct { get; set; }
 
+        public DbSet<CheckoutTable> CheckoutTable { get; set; }
+
     }
 }

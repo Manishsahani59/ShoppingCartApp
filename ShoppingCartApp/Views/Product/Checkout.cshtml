@@ -4,14 +4,14 @@
 }
 <style>
     label {
-        color:white;
+        color: gray;
     }
-    </style>
+</style>
 
 <h2 class="text-center">Checkout</h2>
 
-<div style="width:40%;height:40%;background-color:maroon;margin:auto;">
-    @using (Html.BeginForm("Checkout", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+<div style="width:40%;height:40%;background-color:#fff;margin:auto;">
+    @using (Html.BeginForm("OrderPlace", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
     <div style="padding:10px">
         <div class="form-row">
@@ -20,9 +20,10 @@
                 <input type="text" class="form-control" id="Name" placeholder="Name" name="Name">
             </div>
             @*<div class="form-group col-md-6">
-                <label for="inputPassword4"></label>
-                <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-            </div>*@
+                    <label for="inputPassword4"></label>
+                    <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                    C:\Users\dell\source\repos\ShoppingCartApp\ShoppingCartApp\Views\Product\Checkout.cshtml
+                </div>*@
         </div>
         <div class="form-row">
             <div class="form-group  col-md-12">
@@ -37,12 +38,12 @@
 
         <div class="form-group col-md-4">
             <label for="inputZip">Zip</label>
-            <input type="text" class="form-control" id="inputZip">
+            <input type="text" class="form-control" id="inputZip" name="Zipcode">
         </div>
 
         <div class="form-group col-md-4">
             <label for="state">State</label>
-            <select id="state" class="form-control">
+            <select id="state" class="form-control" name="State">
                 <option selected>Choose...</option>
                 <option>Maharastra</option>
                 <option>Uttar Pardesh</option>
@@ -51,14 +52,12 @@
 
         <div class="form-group col-md-4">
             <label for="city">City</label>
-            <select id="city" class="form-control">
+            <select id="city" class="form-control" name="City">
                 <option selected>Choose...</option>
                 <option>Maharastra</option>
                 <option>Uttar Pardesh</option>
             </select>
         </div>
-
-
 
         <div class="form-group col-md-12">
             <div class="form-check">
@@ -71,7 +70,7 @@
         <button class="btn btn-info" style="margin-left:18px"> <span class="glyphicon glyphicon-credit-card"></span> Order Palce</button>
     </div>
     }
-    </div>
-    
-   
+</div>
+
+
 
